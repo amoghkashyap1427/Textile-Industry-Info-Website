@@ -646,11 +646,83 @@ button {
 
 .about-body:last-child { margin-bottom: 0; }
 
-/* Stats Grid */
+/* Stats Grid — kept for reference but no longer used in About */
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+}
+
+/* ── About Video Showcase ──────────────────────────────────── */
+.about-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.video-aura-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Glowing aura behind the video */
+.video-aura {
+  position: absolute;
+  inset: -18px;
+  border-radius: 24px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 168, 76, 0.28) 0%,
+    rgba(107, 26, 42, 0.35) 45%,
+    transparent 75%
+  );
+  filter: blur(22px);
+  z-index: 0;
+  animation: aura-pulse 4s ease-in-out infinite;
+}
+
+@keyframes aura-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50%       { opacity: 1;    transform: scale(1.04); }
+}
+
+/* Gold gradient border frame */
+.video-border-frame {
+  position: relative;
+  z-index: 1;
+  padding: 3px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    var(--gold) 0%,
+    var(--gold-light) 40%,
+    var(--maroon) 60%,
+    var(--gold-dim) 100%
+  );
+  box-shadow:
+    0 0 30px rgba(201, 168, 76, 0.25),
+    0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.about-video-el {
+  display: block;
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  max-height: 340px;
+  background: var(--charcoal);
+}
+
+.video-caption {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+  text-align: center;
 }
 
 .stat-card {
@@ -1286,20 +1358,18 @@ button {
     flex: 1.2;
   }
 
-  .about-stats {
+  .about-video {
     flex: 1;
+    align-self: center;
   }
 
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  .video-aura-wrap {
+    max-width: 100%;
   }
 
-  .stat-card {
-    padding: 32px 20px;
+  .about-video-el {
+    max-height: 400px;
   }
-
-  .stat-number { font-size: 2.4rem; }
 
   /* Services */
   .services { padding: 100px 0; }
